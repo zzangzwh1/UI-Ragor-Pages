@@ -1,0 +1,36 @@
+﻿@page
+@model UI_Ragor_Pages.Pages.wcho2CategoriesModel
+@{
+}
+
+
+<Doctype html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Northwind database</title>
+
+    </head>
+    <body>
+        <h1>fdsfds</h1>
+        <table>
+            <tr>
+                @for (int i = 0; i < Model.ColumnNames.Count; i++)
+                {
+                    <td>@Model.ColumnNames[i]</td>
+                }
+            </tr>
+            @foreach (var row in Model.Data)
+            {
+                <tr>
+                    @foreach (var item in row)
+                    {
+                        <td>@item</td>
+                        <br />
+                    }
+                </tr>
+            }
+        </table>
+
+    </body>
+
+</Doctype>
