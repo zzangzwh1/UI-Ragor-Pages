@@ -1,0 +1,51 @@
+﻿@page
+@model UI_Ragor_Pages.Pages.usernameSignOnModel
+@{
+}
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Sign On Page</title>
+
+    <script src="~/libraries/jquery/jquery.js"></script>
+    <script src="~/libraries/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+
+<body>
+    <form name="SampleForm">
+
+    </form>
+  
+
+    <header>
+        <h1> Sign On</h1>
+
+    </header>
+    <section>
+        
+        <form name="SampleForm" method="post" >
+            <div>
+                <label for="_UserID">User ID   :</label>
+                <input asp-for="UserID" type="text" id="_UserID" />
+                <span asp-validation-for="UserID"></span>
+            </div>
+            <div>
+
+                <label for="_Password">Password:</label>
+                <input asp-for="Password" type="password" id="_Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+
+            <div>
+                <input type="submit" name="Submit" value="Submit">
+            </div>
+        </form>
+      
+    </section>
+
+    @Model.Message
+
+</body>
+</html>

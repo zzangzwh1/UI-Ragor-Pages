@@ -1,0 +1,175 @@
+﻿@page
+@model UI_Ragor_Pages.Pages.usernameStudentModel
+@{
+}
+<Doctype html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title> New Student page</title>
+        <script type="text/javascript">
+
+            function isValidate(aForm) {
+                // Check each field and store the results in variables.
+                let isFirstNameValid = isFirstNameValidate(aForm);
+                let isLastNameValid = isLastNameValidate(aForm);
+                let isEmailValid = isEmailValidate(aForm);
+                let isUserIdValid = isUserIdValidate(aForm);
+                let isPasswordValid = isPasswordValidate(aForm);
+                let isConfirmPasswordValidate = isPasswordMatch(aForm);
+
+                // Check if all fields are valid before submitting the form.
+                if (!isFirstNameValid ) {
+                    alert('First Name Field is Empty Required!');
+                }
+                else if (!isLastNameValid){
+                    alert('Last Name Field is Empty Required!');
+                }
+                else if (!isEmailValid){
+                    alert('Email Field is Empty Required!');
+                }
+                else if (!isUserIdValid) {
+                    alert('USER ID Field is Empty Required!');
+                }
+                else if (!isPasswordValid){
+                    alert('Password Password is Empty Required!');
+                }
+                else if (!isConfirmPasswordValidate) {
+                    alert('Confirm Password Field is Empty Required!');
+                }
+                else{
+                    aForm.submit();
+                }
+                
+
+
+            }
+            function isFirstNameValidate(aForm) {
+                let firtName = aForm.firstName;
+                if (firtName.value === '') {                   
+                    return false;
+                }
+
+                return true;
+
+            }
+            function isLastNameValidate(aForm) {
+                let lastName = aForm.lastName;
+
+                if (lastName.value === '') {                   
+                    return false;
+                }
+                return true;
+
+
+            }
+            function isEmailValidate(aForm) {
+                let lastName = aForm.email;
+                if (lastName.value === '') {
+                 
+                    return false;
+                }
+                return true;
+            }
+            function isUserIdValidate(aForm) {
+                let userId = aForm.userId;
+                let userIdPattern = /^[a-zA-Z]{4}\d{4}$/;
+                if (userId.value === '') {                   
+                    return false;
+                }
+                if (!userIdPattern.test(userId.value)) {
+                    alert('User ID pattern is Wrong : , 4 letters followed by 4 digits ex)BAIS1234');
+                    return false;
+                }
+                return true;
+            }
+            function isPasswordValidate(aForm) {
+                let password = aForm.password;
+                let passwordPattern = /^.{6,}/;
+                if (password.value === '') {
+                  
+                    return false;
+                }
+                if (!passwordPattern.test(password.value)) {
+                    alert('Password pattern is Wrong : , at least 6 characters long ');
+                    return false;
+                }
+                return true;
+
+               
+            }
+            function isPasswordMatch(aForm){
+                let password = aForm.password;
+                let cPassword = aForm.cPassword;
+                if (cPassword.value ===''){
+                    return false;
+                }
+                if(cPassword.value != password.value){
+                    alert('Password is not Matching! please try again!');
+                    return false;
+                }
+
+                return true;
+            }
+
+        </script>
+
+
+    </head>
+    <body>
+
+
+        <section>
+            <form name="SampleForm" method="post">
+                <div>
+                    <h1>New Student</h1>
+                </div>
+                <div>
+                    <label for="_FirstName"> FirstName : </label>
+                    <input id="_FirstName" type="text" name="firstName" />
+                </div>
+                <div>
+                    <label for="_LastName">Last Name : </label>
+                    <input id="_LastName" type="text" name="lastName" />
+                </div>
+                <div>
+                    <label for="_Email">Email : </label>
+                    <input id="_Email" type="email" name="email" />
+                </div>
+                <div>
+                    <label for="_Program">Program : </label>
+                    <select id="_Program">
+                        <option value=""></option>
+                        <option value="BAIST">Bachelor of Applied Information Systems Technology</option>
+                        <option value="BBA">Bachelor of Business Administration </option>
+                        <option value="PHOT">Photographic Technology</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="_UserID">User ID : </label>
+                    <input id="_UserID" type="text" name="userId" />
+                </div>
+                <div>
+                    <label for="_Password">Password : </label>
+                    <input id="_Password" type="password" name="password" />
+                </div>
+                <div>
+                    <label for="_cPassword">Confirm Password : </label>
+                    <input id="_cPassword" type="password" name="cPassword" />
+                </div>
+
+                <div>
+                    <input type="submit" value="Submit" name="Submit" onclick="isValidate(window.document.SampleForm);" />
+                </div>
+
+
+
+            </form>
+
+        </section>
+
+
+
+    </body>
+</html>
+</Doctype>
