@@ -5,14 +5,14 @@
     using Microsoft.Data.SqlClient;
     public class GetNorthwindCategories
     {
-       public List<string> colName = new List<string>();
-       public List<object> obj = new List<object>();
+        public List<string> colName = new List<string>();
+        public List<Category> obj = new List<Category>();
 
         public void DisplayNortwindCategory()
         {
             string connectionString = @"Persist Security Info= False;  Server=dev1.baist.ca; Database=Northwind; User ID=wcho2;password=Whdnjsgur1! ";
 
-           
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -28,27 +28,47 @@
                         {
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                Class1 test = new Class1();
-                                test.CategoryName = reader.GetName(0);
-                                test.Description = reader.GetName(1);
-                                test.image = reader.GetName(2);
-                                colName.Add(reader.GetName(i));
+                                //Class1 test = new Class1();
+                                string categories = reader.GetName(i);
+                                colName.Add(categories);
                             }
                             while (reader.Read())
                             {
+                                Category c = new Category();
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
-                                    //db null
-                                    if (reader[i] == DBNull.Value || reader[i].ToString() == "")
+
+
+
+
+                                    // CategoryName
+                                    if (reader["CategoryName"] != DBNull.Value)
                                     {
-                                        obj.Add("N/A;");
-                                    }
-                                    else
-                                    {
-                                        obj.Add(reader[i]);
+                                        c.CategoryName = (string)reader["CategoryName"];
+
+                                        // Description
+                                        if (reader["Description"] != DBNull.Value)
+                                        {
+                                            c.Description = (string)reader["Description"];
+                                        }
+
+                                        // Image
+                                        if (reader["Picture"] != DBNull.Value)
+                                        {
+                                            /*     string hexaImage = reader["Picture"].ToString();
+                                                 byte[] bImageData = HexToBytes(hexaImage);
+                                                 c.Picture = Convert.ToBase64String(bImageData);*/
+                                          
+                                        //    byte[] imageData = HexStringToByteArray(reader["Picture"].ToString());
+                                            c.Picture = Convert.ToBase64String((byte[])reader["Picture"]);
+                                             // c.Picture = Convert.ToBase64String(imageData);
+                                        }
+
+
 
                                     }
                                 }
+                                obj.Add(c);
                             }
 
                         }
@@ -67,6 +87,16 @@
             }
 
         }
+        private byte[] HexToBytes(string hex)
+        {
+            byte[] bytes = new byte[hex.Length / 2];
+            for (int i = 0; i < hex.Length; i += 2)
+            {
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            }
+            return bytes;
+        }
+
     }
 
 

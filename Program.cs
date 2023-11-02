@@ -11,7 +11,7 @@ namespace UI_Ragor_Pages
             app.UseStaticFiles(); //add for wwrooot
             app.UseRouting();
             app.MapRazorPages();
-            //  app.MapGet("/", () => "Hello World!");
+            // app.MapGet("/", () => "Hello World!");
 
             app.Run();
         }

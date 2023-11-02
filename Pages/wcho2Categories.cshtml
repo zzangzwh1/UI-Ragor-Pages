@@ -8,27 +8,42 @@
     <head>
         <meta charset="utf-8" />
         <title>Northwind database</title>
+        <style>
+            .border-Tabe {
+                width: 100%;
+            }
 
+                .border-Tabe tr {
+                    border: 1px solid #000;
+                }
+
+                .border-Tabe td {
+                    border: 1px solid #000;
+                    padding: 8px;
+                    text-align: left;
+                }
+        </style>
     </head>
     <body>
         <h1>fdsfds</h1>
-        <table>
+        <table class="border-Tabe">
             <tr>
-                @for (int i = 0; i < Model.ColumnNames.Count; i++)
+                @foreach (var columnName in Model.ColumnNames)
                 {
-                    <td>@Model.ColumnNames[i]</td>
+                    <td>@columnName</td>
+
                 }
             </tr>
-            @foreach (var row in Model.Data)
+
+            @foreach (var category in Model.Categories)
             {
                 <tr>
-                    @foreach (var item in row)
-                    {
-                        <td>@item</td>
-                        <br />
-                    }
+                    <td>@category.CategoryName </td>
+                    <td>@category.Description</td>
+                    <td><img src="data:image/jpeg; base64,@category.Picture" alt="Image" width="300" height="300" /></td>
                 </tr>
             }
+
         </table>
 
     </body>
