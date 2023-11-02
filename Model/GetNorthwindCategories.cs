@@ -57,11 +57,12 @@
                                         {
                                             /*     string hexaImage = reader["Picture"].ToString();
                                                  byte[] bImageData = HexToBytes(hexaImage);
-                                                 c.Picture = Convert.ToBase64String(bImageData);*/
+                                             ;*/
                                           
                                         //    byte[] imageData = HexStringToByteArray(reader["Picture"].ToString());
+                                           // c.Picture = (string)reader["Picture"];
+                                            // c.Picture = Convert.ToBase64String(imageData);
                                             c.Picture = Convert.ToBase64String((byte[])reader["Picture"]);
-                                             // c.Picture = Convert.ToBase64String(imageData);
                                         }
 
 
