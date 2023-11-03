@@ -139,22 +139,27 @@
     <body>
 
 
-        <section>
-            <form name="SampleForm" method="post" onsubmit="return isValidate(window.document.SampleForm);" action="~/ViewHTTPRequest">
+        <section> 
+            <!--action="~/ViewHTTPRequest" -->
+            <!--onsubmit="return isValidate(window.document.SampleForm);"-->
+            <form name="SampleForm" method="post"  >
                 <div>
                     <h1>New Student</h1>
                 </div>
                 <div>
                     <label for="_FirstName"> FirstName : </label>
-                    <input id="_FirstName" type="text" name="firstName" />
+                    <input id="_FirstName" type="text" name="firstName" value="@Model.firstName" />
+                    @Html.ValidationMessage("firstName") 
                 </div>
                 <div>
                     <label for="_LastName">Last Name : </label>
-                    <input id="_LastName" type="text" name="lastName" />
+                    <input id="_LastName" type="text" name="lastName" value="@Model.lastName" />
+                    @Html.ValidationMessage("lastName")
                 </div>
                 <div>
                     <label for="_Email">Email : </label>
-                    <input id="_Email" type="text" name="email" />
+                    <input id="_Email" type="text" name="email" value="@Model.email" />
+                    @Html.ValidationMessage("email")
                 </div>
                 <div>
                     <label for="_Program">Program : </label>
@@ -167,16 +172,18 @@
                 </div>
                 <div>
                     <label for="_UserID">User ID : </label>
-                    <input id="_UserID" type="text" name="userId" />
+                    <input id="_UserID" type="text" name="userId" value="@Model.userId" />
+                    @Html.ValidationMessage("userId")
                 </div>
                 <div>
                     <label for="_Password">Password : </label>
-                    <input id="_Password" type="password" name="password" />
+                    <input id="_Password" type="password" name="password" value="@Model.password" />
+                    @Html.ValidationMessage("password")
                 </div>
                 <div>
                     <label for="_cPassword">Confirm Password : </label>
-                    <input id="_cPassword" type="password" name="cPassword" />
-
+                    <input id="_cPassword" type="password" name="cPassword" value="@Model.cPassword" />
+                    @Html.ValidationMessage("cPassword")
                 </div>
 
                 <div>
@@ -189,7 +196,7 @@
 
         </section>
         @Model.Message
-
+      
 
 
     </body>
