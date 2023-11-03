@@ -10,6 +10,12 @@ namespace UI_Ragor_Pages.Pages
         public List<string> ColumnNames = new List<string>();
         public List<Category> Categories = new List<Category>();
 
+        //test
+        public List<string> testColumnNames = new List<string>();
+        public List<Category> testCategories = new List<Category>();
+        public string result = "";
+        public string Test = "";
+        public string Test2 = "";
         public void OnGet()
         {
             var north = new GetNorthwindCategories();
@@ -18,7 +24,23 @@ namespace UI_Ragor_Pages.Pages
             ColumnNames = north.colName;
 
             Categories = north.obj;
+
+            //Test
+
+            var test = new TestNorthWind();
+
+            test.DisplayNortwindCategory();
+            testCategories = test.obj;
+            testColumnNames = test.colName;
+            for(int i = 0; i <test.obj.Count; i++)
+            {
+                result = Convert.ToBase64String(test.obj[1].ImageData);
+            }
+            Test = result.Replace("////", "/");
+            Test2 = Test.Replace("//", "/");
+        
         }
+    
     }
 
 }

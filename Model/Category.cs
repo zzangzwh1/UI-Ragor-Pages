@@ -5,5 +5,9 @@
         public string CategoryName { set; get; }
         public string Description { set; get; }
         public string Picture { set; get; }
+
+
+        //test
+        public byte[] ImageData { get; set; }
     }
 }

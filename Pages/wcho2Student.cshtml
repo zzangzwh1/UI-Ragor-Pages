@@ -9,6 +9,8 @@
         <title> New Student page</title>
         <script type="text/javascript">
 
+
+
             function isValidate(aForm) {
                 // Check each field and store the results in variables.
                 let isFirstNameValid = isFirstNameValidate(aForm);
@@ -18,35 +20,47 @@
                 let isPasswordValid = isPasswordValidate(aForm);
                 let isConfirmPasswordValidate = isPasswordMatch(aForm);
 
+                let hasValidationError = true;
                 // Check if all fields are valid before submitting the form.
-                if (!isFirstNameValid ) {
+                if (!isFirstNameValid) {
                     alert('First Name Field is Empty Required!');
+                    hasValidationError = false;
+                    //return false;
                 }
-                else if (!isLastNameValid){
+                else if (!isLastNameValid) {
                     alert('Last Name Field is Empty Required!');
+                    hasValidationError = false;
+                    //return false;
                 }
-                else if (!isEmailValid){
+                else if (!isEmailValid) {
                     alert('Email Field is Empty Required!');
+                    hasValidationError = false;
+                    // return false;
                 }
                 else if (!isUserIdValid) {
                     alert('USER ID Field is Empty Required!');
+                    hasValidationError = false;
+                    //return false;
                 }
-                else if (!isPasswordValid){
+                else if (!isPasswordValid) {
                     alert('Password Password is Empty Required!');
+                    hasValidationError = false;
+                    //return false;
                 }
                 else if (!isConfirmPasswordValidate) {
                     alert('Confirm Password Field is Empty Required!');
+                    hasValidationError = false;
+                    //return false;
                 }
-                else{
-                    aForm.submit();
-                }
-                
+             
+                return hasValidationError;
+
 
 
             }
             function isFirstNameValidate(aForm) {
                 let firtName = aForm.firstName;
-                if (firtName.value === '') {                   
+                if (firtName.value === '') {
                     return false;
                 }
 
@@ -56,7 +70,7 @@
             function isLastNameValidate(aForm) {
                 let lastName = aForm.lastName;
 
-                if (lastName.value === '') {                   
+                if (lastName.value === '') {
                     return false;
                 }
                 return true;
@@ -64,10 +78,14 @@
 
             }
             function isEmailValidate(aForm) {
-                let lastName = aForm.email;
-            
-                if (lastName.value === '') {
-                 
+                let email = aForm.email;
+                let emailPattern = /^[A-Za-z0-9._%+-]+@@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+                if (email.value === '') {
+                    return false;
+                }
+                if (!emailPattern.test(email.value)) {
+                    alert('Email Pattern is Wrong : ,  ex)wcho2@@nait.ca');
                     return false;
                 }
 
@@ -76,7 +94,7 @@
             function isUserIdValidate(aForm) {
                 let userId = aForm.userId;
                 let userIdPattern = /^[a-zA-Z]{4}\d{4}$/;
-                if (userId.value === '') {                   
+                if (userId.value === '') {
                     return false;
                 }
                 if (!userIdPattern.test(userId.value)) {
@@ -89,7 +107,7 @@
                 let password = aForm.password;
                 let passwordPattern = /^.{6,}/;
                 if (password.value === '') {
-                  
+
                     return false;
                 }
                 if (!passwordPattern.test(password.value)) {
@@ -98,15 +116,15 @@
                 }
                 return true;
 
-               
+
             }
-            function isPasswordMatch(aForm){
+            function isPasswordMatch(aForm) {
                 let password = aForm.password;
                 let cPassword = aForm.cPassword;
-                if (cPassword.value ===''){
+                if (cPassword.value === '') {
                     return false;
                 }
-                if(cPassword.value != password.value){
+                if (cPassword.value != password.value) {
                     alert('Password is not Matching! please try again!');
                     return false;
                 }
@@ -122,7 +140,7 @@
 
 
         <section>
-            <form name="SampleForm" method="post">
+            <form name="SampleForm" method="post" onsubmit="return isValidate(window.document.SampleForm);" action="~/ViewHTTPRequest">
                 <div>
                     <h1>New Student</h1>
                 </div>
@@ -136,11 +154,11 @@
                 </div>
                 <div>
                     <label for="_Email">Email : </label>
-                    <input id="_Email" type="email" name="email" />
+                    <input id="_Email" type="text" name="email" />
                 </div>
                 <div>
                     <label for="_Program">Program : </label>
-                    <select id="_Program">
+                    <select id="_Program" name="Program">
                         <option value=""></option>
                         <option value="BAIST">Bachelor of Applied Information Systems Technology</option>
                         <option value="BBA">Bachelor of Business Administration </option>
@@ -158,10 +176,11 @@
                 <div>
                     <label for="_cPassword">Confirm Password : </label>
                     <input id="_cPassword" type="password" name="cPassword" />
+
                 </div>
 
                 <div>
-                    <input type="submit" value="Submit" name="Submit" onclick="isValidate(window.document.SampleForm);" />
+                    <input type="submit" value="Submit" name="Submit"  />
                 </div>
 
 

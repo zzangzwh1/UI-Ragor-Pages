@@ -40,11 +40,35 @@
                 <tr>
                     <td>@category.CategoryName </td>
                     <td>@category.Description</td>
+                    <td><img src="data:image/jpeg;base64,@category.Picture" alt="Image" width="100" height="100" /></td>
+                    
                     <td>@category.Picture</td>
-                    <!--<td><img src="data:image/png;base64,@category.Picture" alt="Image" width="300" height="300" /></td>-->
                 </tr>
             }
 
+        </table>
+
+        <table>
+            <tr>
+                @foreach (var columnName in Model.testColumnNames)
+                {
+                    <td>@columnName</td>
+
+                }
+            </tr>
+
+            @foreach (var category in Model.testCategories)
+            {
+                <tr>
+                    <td>@category.CategoryName </td>
+                    <td><img src="data:image/jpeg;base64,@Convert.ToBase64String(category.ImageData)" alt="TestImage" width="100" height="100" /></td>
+                    <td><img src="data:image/JPEG;base64,@Model.Test2" alt="TestImage" width="100" height="100" /></td>
+                    <td><img src="data:image/JPEG;base64,/@Model.result" alt="TestImage" width="100" height="100" /></td>
+                    <td><img src="data:image/JPEG;base64,@Model.Test" alt="TestImage" width="100" height="100" /></td>
+                    <td><img src="data:image/JPEG;base64,/@Model.Test" alt="TestImage" width="100" height="100" /></td>
+                    <td><img src="data:image/JPEG;base64,;" width="100" height="100" /></td>
+                </tr>
+            }
         </table>
 
     </body>
