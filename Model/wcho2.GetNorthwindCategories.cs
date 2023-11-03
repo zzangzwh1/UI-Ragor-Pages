@@ -21,7 +21,7 @@
                     try
                     {
 
-
+                        
                         command.CommandType = CommandType.StoredProcedure;
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -34,42 +34,24 @@
                             }
                             while (reader.Read())
                             {
-                                /*Category c = new Category();
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    // CategoryName
-                                    if (reader["CategoryName"] != DBNull.Value)
-                                    {
-                                        c.CategoryName = (string)reader["CategoryName"];
-
-                                    }
-                                    // Description
-                                    if (reader["Description"] != DBNull.Value)
-                                    {
-                                        c.Description = (string)reader["Description"];
-                                    }
-
-                                    // Image
-                                    if (reader["Picture"] != DBNull.Value)
-                                    {
-
-                                        byte[] imageData = (byte[])reader["Picture"];
-                                        Console.WriteLine($"Image Data Length: {imageData.Length}");
-                                      
-                                        Console.Write(c.Picture);
-                                       c.Picture = Convert.ToBase64String(imageData);
-
-                                    }
-*/
+                               
                                 Category category = new Category();
                                 category.CategoryName = (string)reader["CategoryName"];
                                 category.Description = (string)reader["Description"];
-                                category.Picture = Convert.ToBase64String((byte[])reader["Picture"]);
+
+
+                                byte[] arr = (byte[])reader["Picture"];
+                                byte[] arr2 =  new byte[arr.Length-78];
+
+                                Array.Copy(arr, 78, arr2, 0, arr2.Length);
+
+                                category.Picture = Convert.ToBase64String(arr2);
+
+                         
                                 obj.Add(category);
 
                             }
-                                //obj.Add(c);
-                            //}
+                         
 
                         }
                     }
