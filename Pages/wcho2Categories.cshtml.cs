@@ -12,14 +12,14 @@ namespace UI_Ragor_Pages.Pages
         public List<Category> Categories = new List<Category>();
 
         //test
-        public List<string> testColumnNames = new List<string>();
+/*        public List<string> testColumnNames = new List<string>();
         public List<Category> testCategories = new List<Category>();
         public List<string> imageResults = new List<string>();
 
         public string result = "";
         public string Test = "";
         public string Test2 = "";
-        public byte[] imageData = null;
+        public byte[] imageData = null;*/
       
         public void OnGet()
         {
@@ -33,7 +33,7 @@ namespace UI_Ragor_Pages.Pages
 
             //Test
 
-            var test = new TestNorthWind();
+            /*var test = new TestNorthWind();
 
             test.DisplayNortwindCategory();
             testCategories = test.obj;
@@ -47,7 +47,7 @@ namespace UI_Ragor_Pages.Pages
                 result = Convert.ToHexString(test.obj[2].ImageData);
                 Console.Write(result);
               
-            }
+            }*/
             //test 2
 
            

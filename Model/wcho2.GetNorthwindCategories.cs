@@ -34,7 +34,7 @@
                             }
                             while (reader.Read())
                             {
-                                Category c = new Category();
+                                /*Category c = new Category();
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
                                     // CategoryName
@@ -60,12 +60,16 @@
                                        c.Picture = Convert.ToBase64String(imageData);
 
                                     }
+*/
+                                Category category = new Category();
+                                category.CategoryName = (string)reader["CategoryName"];
+                                category.Description = (string)reader["Description"];
+                                category.Picture = Convert.ToBase64String((byte[])reader["Picture"]);
+                                obj.Add(category);
 
-
-
-                                }
-                                obj.Add(c);
                             }
+                                //obj.Add(c);
+                            //}
 
                         }
                     }
