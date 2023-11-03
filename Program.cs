@@ -15,7 +15,6 @@ namespace UI_Ragor_Pages
             // app.MapGet("/", () => "Hello World!");
             app.MapFallbackToPage("/wcho2Categories");
 
-
             app.Run();
         }
     }

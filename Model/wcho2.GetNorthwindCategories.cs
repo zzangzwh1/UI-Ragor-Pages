@@ -54,7 +54,10 @@
                                     {
 
                                         byte[] imageData = (byte[])reader["Picture"];
-                                        c.Picture = Convert.ToBase64String(imageData);
+                                        Console.WriteLine($"Image Data Length: {imageData.Length}");
+                                      
+                                        Console.Write(c.Picture);
+                                       c.Picture = Convert.ToBase64String(imageData);
 
                                     }
 

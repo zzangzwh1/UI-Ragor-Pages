@@ -45,28 +45,24 @@ namespace UI_Ragor_Pages.Model
                                     {
                                         c.CategoryName = (string)reader["CategoryName"];
 
-                                        // Description
-                                        if (reader["Description"] != DBNull.Value)
-                                        {
-                                            c.Description = (string)reader["Description"];
-                                        }
-
-                                        // Image
-                                        if (reader["Picture"] != DBNull.Value)
-                                        {
-                                            /*     string hexaImage = reader["Picture"].ToString();
-                                                 byte[] bImageData = HexToBytes(hexaImage);
-                                             ;*/
-
-                                            //    byte[] imageData = HexStringToByteArray(reader["Picture"].ToString());
-                                            // c.Picture = (string)reader["Picture"];
-                                            // c.Picture = Convert.ToBase64String(imageData);
-                                            c.ImageData = (byte[])reader["Picture"];
-                                        }
-
-
-
                                     }
+                                    // Description
+                                    if (reader["Description"] != DBNull.Value)
+                                    {
+                                        c.Description = (string)reader["Description"];
+                                    }
+
+                                    // Image
+                                    if (reader["Picture"] != DBNull.Value)
+                                    {
+                                       
+                                       c.ImageData = (byte[])reader["Picture"];
+
+                                       
+                                    }
+
+
+
                                 }
                                 obj.Add(c);
                             }
@@ -87,5 +83,6 @@ namespace UI_Ragor_Pages.Model
             }
 
         }
+       
     }
 }

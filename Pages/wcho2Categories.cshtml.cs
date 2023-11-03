@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UI_Ragor_Pages.Model;
+using System.Drawing;
 
 namespace UI_Ragor_Pages.Pages
 {
@@ -13,17 +14,22 @@ namespace UI_Ragor_Pages.Pages
         //test
         public List<string> testColumnNames = new List<string>();
         public List<Category> testCategories = new List<Category>();
+        public List<string> imageResults = new List<string>();
+
         public string result = "";
         public string Test = "";
         public string Test2 = "";
+        public byte[] imageData = null;
+      
         public void OnGet()
         {
-            var north = new GetNorthwindCategories();
-            north.DisplayNortwindCategory();
+          
+            var getCategories = new GetNorthwindCategories();
+            getCategories.DisplayNortwindCategory();
 
-            ColumnNames = north.colName;
+            ColumnNames = getCategories.colName;
 
-            Categories = north.obj;
+            Categories = getCategories.obj;
 
             //Test
 
@@ -32,15 +38,23 @@ namespace UI_Ragor_Pages.Pages
             test.DisplayNortwindCategory();
             testCategories = test.obj;
             testColumnNames = test.colName;
+
+            byte[] arr = null;
             for(int i = 0; i <test.obj.Count; i++)
             {
-                result = Convert.ToBase64String(test.obj[1].ImageData);
+                Console.Write(test.obj[2].ImageData);
+                Console.WriteLine();
+                result = Convert.ToHexString(test.obj[2].ImageData);
+                Console.Write(result);
+              
             }
-            Test = result.Replace("////", "/");
-            Test2 = Test.Replace("//", "/");
-        
+            //test 2
+
+           
+
         }
-    
+
+  
     }
 
 }
