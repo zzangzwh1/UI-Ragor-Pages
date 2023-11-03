@@ -1,12 +1,15 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿using UI_Ragor_Pages.Model;
 
-namespace UI_Ragor_Pages.Model
+namespace UI_Ragor_Pages.TechService
 {
-    public class TestNorthWind
+    using System.Data;
+    using System.Data.SqlTypes;
+    using Microsoft.Data.SqlClient;
+    public class GetNorthwindCategories
     {
         public List<string> colName = new List<string>();
         public List<Category> obj = new List<Category>();
+
         public void DisplayNortwindCategory()
         {
             string connectionString = @"Persist Security Info= False;  Server=dev1.baist.ca; Database=Northwind; User ID=wcho2;password=Whdnjsgur1! ";
@@ -20,7 +23,6 @@ namespace UI_Ragor_Pages.Model
                     try
                     {
 
-
                         command.CommandType = CommandType.StoredProcedure;
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -33,38 +35,15 @@ namespace UI_Ragor_Pages.Model
                             }
                             while (reader.Read())
                             {
-                                Category c = new Category();
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
+                                Category category = new Category();
+                                category.CategoryName = (string)reader["CategoryName"];
+                                category.Description = (string)reader["Description"];
 
-
-
-
-                                    // CategoryName
-                                    if (reader["CategoryName"] != DBNull.Value)
-                                    {
-                                        c.CategoryName = (string)reader["CategoryName"];
-
-                                    }
-                                    // Description
-                                    if (reader["Description"] != DBNull.Value)
-                                    {
-                                        c.Description = (string)reader["Description"];
-                                    }
-
-                                    // Image
-                                    if (reader["Picture"] != DBNull.Value)
-                                    {
-                                       
-                                       c.ImageData = (byte[])reader["Picture"];
-
-                                       
-                                    }
-
-
-
-                                }
-                                obj.Add(c);
+                                byte[] arr = (byte[])reader["Picture"];
+                                byte[] arr2 = new byte[arr.Length - 78];
+                                Array.Copy(arr, 78, arr2, 0, arr2.Length);
+                                category.Picture = Convert.ToBase64String(arr2);
+                                obj.Add(category);
                             }
 
                         }
@@ -83,6 +62,9 @@ namespace UI_Ragor_Pages.Model
             }
 
         }
-       
+
+
     }
+
+
 }
